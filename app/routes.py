@@ -196,3 +196,10 @@ def restore_pet(id):
     db.session.commit()
     
     return redirect(url_for('main.pets'))
+
+
+# Route to store inactive pets
+@main.route('/inactive_pets')
+def inactive_pets():
+    pets = Pet.query.filter_by(is_active=False).all()  # Fetch only inactive pets
+    return render_template('inactive_pets.html', pets=pets)

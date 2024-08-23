@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inactive Pets</title>
+</head>
+<body>
+    <h1>Inactive Pets</h1>
+    <ul>
+        {% for pet in pets %}
+            <li>
+                {{ pet.name }} ({{ pet.type }}) - Store ID: {{ pet.store_id }}
+                <!-- Restore Button -->
+                <form method="POST" action="{{ url_for('main.restore_pet', id=pet.id) }}" style="display:inline;">
+                    <button type="submit">Restore</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('main.pets') }}">Back to Active Pets</a>
+</body>
+</html>

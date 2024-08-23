@@ -23,16 +23,11 @@
                     <form method="POST" action="{{ url_for('main.soft_delete_pet', id=pet.id) }}" style="display:inline;">
                         <button type="submit">Soft Delete</button>
                     </form>
-                {% else %}
-                    <!-- Restore Button -->
-                    <form method="POST" action="{{ url_for('main.restore_pet', id=pet.id) }}" style="display:inline;">
-                        <button type="submit">Restore</button>
-                    </form>
                 {% endif %}
             </li>
         {% endfor %}
     </ul>
-    
+
     <h2>Add a New Pet</h2>
     <form method="POST" action="{{ url_for('main.add_pet') }}">
         <label for="name">Pet Name:</label>
@@ -46,6 +41,12 @@
         <br>
         <button type="submit">Add Pet</button>
     </form>
+
+    <hr>
+    <!-- Link to Inactive Pets Page -->
+    <a href="{{ url_for('main.inactive_pets') }}">View Inactive Pets</a>
+
+    <br><br>
     <a href="{{ url_for('main.index') }}">Back to Stores</a>
 </body>
 </html>
