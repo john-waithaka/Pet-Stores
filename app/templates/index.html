@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Store</title>
+</head>
+<body>
+    <h1>Pet Stores</h1>
+    <ul>
+        {% for store in stores %}
+            <li>{{ store.name }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('main.pets') }}">View Pets</a>
+</body>
+</html>

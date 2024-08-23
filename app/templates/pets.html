@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pets</title>
+</head>
+<body>
+    <h1>Pets</h1>
+    <ul>
+        {% for pet in pets %}
+            <li>
+                {{ pet.name }} ({{ pet.type }}) - Store ID: {{ pet.store_id }}
+                {% if pet.is_active %}
+                    <!-- Update Button -->
+                    <form method="POST" action="{{ url_for('main.update_pet', id=pet.id) }}" style="display:inline;">
+                        <input type="text" name="name" placeholder="New Name" required>
+                        <input type="text" name="type" placeholder="New Type" required>
+                        <button type="submit">Update</button>
+                    </form>
+
+                    <!-- Soft Delete Button -->
+                    <form method="POST" action="{{ url_for('main.soft_delete_pet', id=pet.id) }}" style="display:inline;">
+                        <button type="submit">Soft Delete</button>
+                    </form>
+                {% else %}
+                    <!-- Restore Button -->
+                    <form method="POST" action="{{ url_for('main.restore_pet', id=pet.id) }}" style="display:inline;">
+                        <button type="submit">Restore</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Add a New Pet</h2>
+    <form method="POST" action="{{ url_for('main.add_pet') }}">
+        <label for="name">Pet Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="type">Pet Type:</label>
+        <input type="text" id="type" name="type" required>
+        <br>
+        <label for="store_id">Store ID:</label>
+        <input type="number" id="store_id" name="store_id" required>
+        <br>
+        <button type="submit">Add Pet</button>
+    </form>
+    <a href="{{ url_for('main.index') }}">Back to Stores</a>
+</body>
+</html>
